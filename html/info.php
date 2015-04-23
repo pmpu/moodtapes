@@ -4,7 +4,7 @@ phpinfo();
 
 new DbHandler();
 
-class DbHandler extends Handler {
+class DbHandler {
 	function __construct(){
 		echo "construct";
 	}
