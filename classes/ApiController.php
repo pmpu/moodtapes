@@ -5,6 +5,7 @@ class ApiController{
   
 	public function ApiController($request){	      
 		$this->request = $request;
+        Db::connectDatabase();
         
 	}
 	
@@ -16,8 +17,7 @@ class ApiController{
 	       case "hello":
             echo "hello ".$this->request->getParam(1); 
            break;
-           case "dbcheck":
-            Db::connectDatabase();
+           case "dbcheck":            
             print_r(Db::getElementByQuery("SELECT * FROM users"));
              
            break;

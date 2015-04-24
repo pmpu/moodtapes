@@ -1,5 +1,5 @@
 <?
-/*!*/ error_reporting(E_ALL ^ E_NOTICE);
+/*!*/ error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 date_default_timezone_set("Europe/Moscow");
 
 setlocale(LC_ALL, "en_US.UTF8");
