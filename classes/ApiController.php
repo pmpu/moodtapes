@@ -14,7 +14,7 @@ class ApiController{
               echo "main page";
            break;
 	       case "hello":
-            echo "hello"; 
+            echo "hello ".$this->request->getParam(1); 
            break;
            default:
              echo "no such action";
