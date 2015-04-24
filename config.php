@@ -6,9 +6,9 @@ setlocale(LC_ALL, "ru_RU.UTF8");
 
 function __autoload($className){
 	if(strstr($className, 'Action'))
-		require_once("/classes/actions/$className.php");
+		require_once(ROOT."/classes/actions/$className.php");
 	else
-	    require_once("/classes/$className.php");
+	    require_once(ROOT."/classes/$className.php");
 }
 
 #url
