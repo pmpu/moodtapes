@@ -2,13 +2,10 @@
 /*!*/ error_reporting(E_ALL ^ E_NOTICE);
 date_default_timezone_set("Europe/Moscow");
 
-setlocale(LC_ALL, "ru_RU.UTF8");
+setlocale(LC_ALL, "en_US.UTF8");
 
 function __autoload($className){
-	if(strstr($className, 'Action'))
-		require_once(ROOT."/classes/actions/$className.php");
-	else
-	    require_once(ROOT."/classes/$className.php");
+	require_once(ROOT."/classes/$className.php");
 }
 
 #url
@@ -16,11 +13,11 @@ define("MAX_URL_LENGTH", 128);
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 #database
-define("DB_ADDRESS", "localhost");
-define("DB_USER", "root");
-define("DB_PASSWORD", "");
-define("DB_NAME", "george.blog");
-define("DB_SALT", "CLOUDYSALT");
+define("DB_ADDRESS", "46.101.170.107");
+define("DB_USER", "admin");
+define("DB_PASSWORD", "ternary6");
+define("DB_NAME", "moodtapes");
+define("DB_SALT", "MOODtaPESsALT");
 
 
 ?>
