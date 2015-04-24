@@ -8,7 +8,7 @@ class DbHandler {
 	function __construct(){
 		echo "construct";
 	}
-
+// magic comment
 }
 
 ?>
