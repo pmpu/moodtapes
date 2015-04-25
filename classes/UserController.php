@@ -21,6 +21,23 @@ class UserController{
 		return null;
 	}
     
+    public static function tieMusic(User $user, Music $music){
+        db::execQuery("INSERT IGNORE INTO user_music (user, music) 
+                VALUES ('".$user->getId()."', '".$music->getId()."')");
+    }
+    
+    public static function tieImage(User $user, Image $image){
+        db::execQuery("INSERT IGNORE INTO user_image (user, image) 
+                VALUES ('".$user->getId()."', '".$image->getId()."')");
+    }
+    
+    public static function tiePage(User $user, Page $page){
+        db::execQuery("INSERT IGNORE INTO user_page (user, page) 
+                VALUES ('".$user->getId()."', '".$page->getId()."')");
+    }  
+    
+    
+    
     public static function getUserBySession($session){
         return Db::getObjectByQuery("SELECT * FROM users WHERE session = '".mysql_escape_string($session)."'", "User");
     }

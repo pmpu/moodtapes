@@ -23,18 +23,45 @@ class MusicController {
         return $music;
     }
     
-    public function getMusicById($id){
+    public static function getMusicById($id){
         return Db::getObjectByQuery("SELECT * FROM music WHERE id = '".$id."'", "Music");
     }
     
-    public function getMusicByMd5($md5){
+    public static function getMusicByMd5($md5){
         return Db::getObjectByQuery("SELECT * FROM music WHERE md5 = '".$md5."'", "Music");
     }
     
-    public function tie(User $user, Music $music){
-        db::execQuery("INSERT IGNORE INTO user_music (user, music) 
-                VALUES ('".$user->getId()."', '".$music->getId()."')");
+    public static function getUserMusic(User $usr){
+        $resp = array();
+        $resp["error"] = false;
+        
+        $music = Db::getObjectsByQuery("SELECT music.* FROM music 
+                                LEFT JOIN user_music ON music.id = user_music.music
+                                LEFT JOIN users ON user_music.user = users.id
+                                WHERE users.id = '".$usr->getId()."'", "Music");
+        
+        $resp['music'] = array();
+                
+        if($music){
+            foreach($music as $key=>$m){
+                $resp['music'][] = array(
+                    "id" => $m->getId(),
+                    "file" => self::getMusicUrl($m)
+                );
+            }    
+        }
+        
+        
+        echo json_encode($resp);
+        
     }
+    
+     public static function getMusicUrl(Music $music){
+        return ROOT."/music/".$music->getMd5().".mp3";
+     }
+    
+     
+    
     
     
     
@@ -43,8 +70,7 @@ class MusicController {
         $resp["error"] = false;
         
         $usr = UserController::currentUser();
-        print_r($_POST);
-        print_r($files);
+    
         if($usr){
             foreach($files as $key=>$file){
                 if(!$file['error']){
@@ -57,7 +83,7 @@ class MusicController {
                         
                         if(move_uploaded_file($file["tmp_name"], $new_path)){
                             $m = null;
-                            if(!($m = $this->getMusicByMd5($md5))){   
+                            if(!($m = self::getMusicByMd5($md5))){   
                                 
                                 $id3 = new ID3($new_path);
                                 $id3->getInfo();
@@ -69,7 +95,7 @@ class MusicController {
                             }                            
                             
                             // tie with user
-                            $this->tie($usr, $m);
+                            UserController::tieMusic($usr, $m);
                                                         
 
                         }else{

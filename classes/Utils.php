@@ -24,6 +24,34 @@ class Utils{
         }
         return $randomString;
     }
+    
+    public static function isImage($file)
+    {
+        $fh = fopen($file,'rb');
+        if ($fh) { 
+            $bytes = fread($fh, 6); // read 6 bytes
+            fclose($fh);            // close file
+    
+            if ($bytes === false) { // bytes there?
+                return false;
+            }
+    
+            // ok, bytes there, lets compare....
+    
+            if (substr($bytes,0,3) == "\xff\xd8\xff") { 
+                return 'image/jpeg';
+            }
+            if ($bytes == "\x89PNG\x0d\x0a") { 
+                return 'image/png';
+            }
+            if ($bytes == "GIF87a" or $bytes == "GIF89a") { 
+                return 'image/gif';
+            }
+    
+            return 'application/octet-stream';
+        }
+        return false;
+    }
 }
 
 

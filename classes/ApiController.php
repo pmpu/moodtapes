@@ -10,7 +10,7 @@ class ApiController{
 	}
 	
 	public function processRequest(){
-	   
+	   $cusr = UserController::currentUser();
 	   switch($this->request->getAction()){
 	       case "":
               echo "main page";
@@ -35,6 +35,17 @@ class ApiController{
            case "upload_music":
                 $mc = new MusicController();
                 $mc->upload($this->request->getFiles());
+           break;
+           case "upload_images":
+                $ic = new ImageController();
+                $ic->upload($this->request->getFiles());
+           break;
+           
+           case "get_uploaded_images":
+                ImageController::getUserImages($cusr);
+           break;
+           case "get_uploaded_music":
+                MusicController::getUserMusic($cusr);
            break;
            case "dbcheck":            
            
