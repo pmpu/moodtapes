@@ -9,19 +9,17 @@ class PageController
     
     
     
-    public function save(Page $page){
+    public static function save(Page $page){
         if($page->getId()){
             Db::execQuery("UPDATE pages SET name = '".$page->getName()."', 
                                             description = '".$page->getDesc()."',
-                                            color_bg = '".$page->getColorBg()."',
-                                            color_controls = '".$page->getColorControls()."',
+                                            color_bg = '".$page->getColorBg()."'
                                             WHERE id = '".$page->getId()."'");
         }else{
-            Db::execQuery("INSERT INTO pages (name, description, color_bg, color_controls) VALUES 
-                        ('".mysql_escape_string($page->getName())."', 
-                        '".mysql_escape_string($page->getDesc())."',
-                        '".mysql_escape_string($page->getColorBg())."',
-                        '".mysql_escape_string($page->getColorControls())."',
+            Db::execQuery("INSERT INTO pages (name, description, color_bg) VALUES 
+                        ('".$page->getName()."', 
+                        '".$page->getDesc()."',
+                        '".$page->getColorBg()."'
                         )");
             $page->setId(mysql_insert_id());
         }
@@ -78,6 +76,7 @@ class PageController
             $resp_page['id'] = (int)$page->getId();
             $resp_page['name'] = $page->getName();
             $resp_page['desc'] = $page->getDesc();
+            $resp_page['color_bg'] = $page->getColorBg();
             $resp_page['music'] = array();
             $resp_page['images'] = array();
             $resp_page['tags'] = array();
@@ -125,6 +124,7 @@ class PageController
             
             $resp['name'] = $page->getName();
             $resp['desc'] = $page->getDesc();
+            $resp['color_bg'] = $page->getColorBg();
             $resp['music'] = array();
             $resp['images'] = array();
             $resp['tags'] = array();
@@ -189,10 +189,11 @@ class PageController
     
     
 
-    function createPage($name, $desc, $music, $images, $tags){
+    function createPage($name, $desc, $music, $images, $tags, $colorBg){
         $resp = array();
         $resp["error"] = false;
-  
+        
+        if($colorBg) $colorBg = "white";
         
         $usr = UserController::currentUser();
         
@@ -202,10 +203,10 @@ class PageController
                     $page = new Page(); 
                     $page->setName($name); 
                     $page->setDesc($desc);
-
+                    $page->setColorBg($colorBg);
                                         
-                    $page = $this->save($page);
-                    echo 1;
+                    $page = self::save($page);
+                    
                     if($music){
                         foreach($music as $key=>$m_id){
                             if($m = MusicController::getMusicById($m_id)){
