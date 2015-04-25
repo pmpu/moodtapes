@@ -64,7 +64,7 @@ class ApiController{
            break;
            
            default:
-             echo "no such action";
+             echo json_encode(array("error"=>true, "errorMsg" => "not_found"));
 	   }
 	   
       
