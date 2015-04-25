@@ -3,6 +3,9 @@
 date_default_timezone_set("Europe/Moscow");
 
 setlocale(LC_ALL, "en_US.UTF8");
+mysql_query("SET NAMES 'utf8'"); 
+mysql_query("SET CHARACTER SET 'utf8'");
+mysql_query("SET SESSION collation_connection = 'utf8_general_ci'");
 
 function __autoload($className){
 	require_once(ROOT."/classes/$className.php");
