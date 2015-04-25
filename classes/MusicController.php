@@ -48,8 +48,9 @@ class MusicController {
         if($usr){
             foreach($files as $key=>$file){
                 if(!$file['error']){
-                    $mp3_mimes = array('audio/mpeg3', 'audio/x-mpeg-3'); 
-                    if (!in_array(mime_content_type($file["tmp_name"]), $mp3_mimes)) {
+                    $mp3_mimes = array('audio/mpeg3', 'audio/x-mpeg-3', 'application/octet-stream'); 
+                    
+                    if (in_array(mime_content_type($file["tmp_name"]), $mp3_mimes)) {
                         $md5 = md5_file($file["tmp_name"]);
                         $new_path = ROOT."/music/".$md5.".mp3";                       
                        
