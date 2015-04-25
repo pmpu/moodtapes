@@ -9,7 +9,8 @@ class PageController
     public function save(Page $page){
         if($page->getId()){
             Db::execQuery("UPDATE pages SET name = '".$page->getName()."', 
-                                            description = '".$page->getDesc()."'");
+                                            description = '".$page->getDesc()."'
+                                            WHERE id = '".$page->getId()."'");
         }else{
             Db::execQuery("INSERT INTO pages (name, description) VALUES 
                         ('".mysql_escape_string($page->getName())."', '".mysql_escape_string($page->getDesc())."')");
@@ -19,11 +20,11 @@ class PageController
         return $page;
     }
 
-    function createPage($session, $name, $desc){
+    function createPage($name, $desc){
         $resp = array();
         $resp["error"] = false;
         
-        $usr = UserController::getUserBySession($session);
+        $usr = UserController::currentUser();
         
         if($usr){
             if (Utils::checkName($name)){
@@ -43,7 +44,7 @@ class PageController
             }    
         }else{
             $resp["error"] = true;
-            $resp["errorMsg"] = "please sign in";
+            $resp["errorMsg"] = "need_auth";
         }
         
         

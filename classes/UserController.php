@@ -7,6 +7,10 @@ class UserController{
 	{
 		
 	}
+    
+    public static function currentUser(){
+        return UserController::getUserBySession($_POST["session"]);
+    }
 
 	public static function getUserById($id){
 		$id = (int)$id;

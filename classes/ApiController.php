@@ -10,6 +10,7 @@ class ApiController{
 	}
 	
 	public function processRequest(){
+	   
 	   switch($this->request->getAction()){
 	       case "":
               echo "main page";
@@ -28,9 +29,12 @@ class ApiController{
            break;
            case "create":
             $pc = new PageController();
-            $pc->createPage($this->request->getPost("session"),
-                     $this->request->getPost("name"),
+            $pc->createPage($this->request->getPost("name"),
                       $this->request->getPost("desc"));
+           break;
+           case "upload_music":
+                $mc = new MusicController();
+                $mc->upload($this->request->getFiles());
            break;
            case "dbcheck":            
            

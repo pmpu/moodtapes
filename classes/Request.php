@@ -24,6 +24,10 @@ class Request{
 			return ($rv = $this->post[$index])?$rv:false;
 		return $this->post;
 	}
+    
+    public function getFiles(){
+        return $this->files;
+    }
 
 	public function getVar($name){	
 		if(($key = array_search($name, $this->params)) !== false){
