@@ -57,7 +57,7 @@ class MusicController {
     }
     
      public static function getMusicUrl(Music $music){
-        return ROOT."/music/".$music->getMd5().".mp3";
+        return "/music/".$music->getMd5().".mp3";
      }
     
      

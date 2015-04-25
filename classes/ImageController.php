@@ -53,7 +53,7 @@ class ImageController {
     }
     
     public static function getImageUrl(Image $img){
-        return ROOT."/images/".$img->getMd5().".png";
+        return "/images/".$img->getMd5().".png";
     }
      
     
