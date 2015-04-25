@@ -75,7 +75,7 @@ class PageController
             $tags = self::getPageTags($page);
             
             $resp_page = array();
-            $resp_page['id'] = $page->getId();
+            $resp_page['id'] = (int)$page->getId();
             $resp_page['name'] = $page->getName();
             $resp_page['desc'] = $page->getDesc();
             $resp_page['music'] = array();
