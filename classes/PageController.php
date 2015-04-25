@@ -193,7 +193,7 @@ class PageController
         $resp = array();
         $resp["error"] = false;
         
-        if($colorBg) $colorBg = "white";
+        if(!$colorBg) $colorBg = "white";
         
         $usr = UserController::currentUser();
         
