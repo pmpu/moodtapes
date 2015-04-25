@@ -66,7 +66,7 @@ class PageController
         $p = (int) $p;
         $per_page = (int) $per_page;
         
-        $pages = Db::getObjectsByQuery("SELECT pages.* FROM pages ".$query." LIMIT ".($p-1)*$per_page.", ".$per_page."", "Page");
+        $pages = Db::getObjectsByQuery("SELECT pages.* FROM pages ".$query." LIMIT ".($p-1)*$per_page.", ".$per_page." ORDER BY pages.id DESC", "Page");
         
         $resp['pages'] = array();
         foreach($pages as $key=>$page){
