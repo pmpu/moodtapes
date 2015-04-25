@@ -44,6 +44,7 @@ class MusicController {
         
         $usr = UserController::currentUser();
         print_r($_POST);
+        print_r($files);
         if($usr){
             foreach($files as $key=>$file){
                 if(!$file['error']){
