@@ -5,48 +5,43 @@
 
 Class Page{
    private $id;
-    private $name;
-    private  $desc;
+   private $name;
+   private  $desc;
 
-    function __construct($p) {
+    function __construct($p = null) {
+        if($p){
+            $this->id = $p['id'];
+            $this->name = $p['name'];
+            $this->desc = $p['desc'];    
+        }
+    }
+    
+    function getId(){return $this->id;}
+    function setId($val){$this->id = (int) $val;}
 
-
-        $this->id = $p['id'];
-        $this->name = $p['name'];
-        $this->desc = $p['desc'];
-
-
-
-
-
-}
-
-    function setName($name)
+    function setName($val)
     {
-        $this->name = $name;
+        $this->name = $val;
         return $this;
-
     }
 
-    function getName($page)
+    function getName()
     {
-
         return $this->name;
     }
 
 
 
-    function setDesc($desc)
+    function setDesc($val)
     {
 
-        $this->desc = $desc;
+        $this->desc = $val;
         return $this;
 
     }
 
     function getDesc()
     {
-
        return $this->desc;
 
     }

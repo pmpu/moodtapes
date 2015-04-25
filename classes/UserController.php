@@ -8,7 +8,7 @@ class UserController{
 		
 	}
 
-	public function getUserById($id){
+	public static function getUserById($id){
 		$id = (int)$id;
 		$user_a = Db::getElementByQuery("SELECT * FROM users WHERE id = ".$id);
 		if ($user_a != null){
@@ -16,6 +16,10 @@ class UserController{
 		}
 		return null;
 	}
+    
+    public static function getUserBySession($session){
+        return Db::getObjectByQuery("SELECT * FROM users WHERE session = '".mysql_escape_string($session)."'", "User");
+    }
 
 	public function save(User $user){
 		if ($user->getId())
@@ -40,7 +44,7 @@ class UserController{
 
 	}
 	public function signup($email, $password, $name){
-		$resp = [];
+		$resp = array();
 		$resp["error"] = false;
 
 		if (Utils::checkEmail($email)){
@@ -54,7 +58,10 @@ class UserController{
 						$usr->setSession(Utils::randString());
 						$this->save($usr);
 						$resp["session"] = $usr->getSession();
-					}
+					}else{
+    					$resp["error"] = true;
+    					$resp["errorMsg"] = "name must be at least 5 symbols long";
+    				}
 				}else{
 					$resp["error"] = true;
 					$resp["errorMsg"] = "password must be at least 5 symbols long";
@@ -69,18 +76,19 @@ class UserController{
 			$resp["errorMsg"] = "wrong email";
 		}
 
-		print_r($resp);
+		echo json_encode($resp);
 	}
 
 	public function signin($email, $password){
-		$resp = [];
+		$resp = array();
 		$resp["error"] = false;
 
 
 
-		if (strlen($email) != 0){
+		if (Utils::checkEmail($email)){
 			if(strlen($password) >= 5){
 				$password_md5 = md5($password.DB_SALT);
+                
 				$usr = Db::getObjectByQuery("SELECT * FROM users WHERE email='".$email."' 
 					AND password_md5 = '".$password_md5."' ", "User");
 				if ($usr)
@@ -88,7 +96,7 @@ class UserController{
 					$usr->setSession(Utils::randString());
 					$this->save($usr);
 					$resp["session"] = $usr->getSession();
-					print_r($resp);
+					echo json_encode($resp);
 					return;
 				}
 			}
@@ -96,7 +104,7 @@ class UserController{
 
 		$resp["error"] = true;
 		$resp["errorMsg"] = "wrong email or password";
-		print_r($resp);
+		echo json_encode($resp);
 	}
 
 }

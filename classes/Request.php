@@ -3,10 +3,10 @@
 
 class Request{
 
-	private $action, $params, $post;
+	private $action, $params, $post, $files;
 
-	public function __construct($path, $post){
-		$this->buildRequest($path, $post);	
+	public function __construct($path, $post, $files){
+		$this->buildRequest($path, $post, $files);	
 	}
 
 	public function getAction(){
@@ -62,6 +62,9 @@ class Request{
 
 		$this->params = array_values($requestArray);
 		$this->post = $post;	
+        
+        
+        
 	}
 }
 

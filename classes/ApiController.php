@@ -25,6 +25,12 @@ class ApiController{
             $uc = new UserController();
             $uc->signin($this->request->getPost("email"), $this->request->getPost("password"));
            break;
+           case "create":
+            $pc = new PageController();
+            $pc->createPage($this->request->getPost("session"),
+                     $this->request->getPost("name"),
+                      $this->request->getPost("desc"));
+           break;
            case "dbcheck":            
            
            print_r(Db::getElementByQuery("SELECT * FROM users"));

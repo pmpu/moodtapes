@@ -1,50 +1,58 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sergey
- * Date: 25.04.15
- * Time: 4:26
- */
 
 class PageController
-
 {
-
-    function createPage($name, $desc){
-        $resp = array("error"=>false);
-
-        if ($name!= ""&& $desc!= "" ){
-            $page = new Page($name, $desc);
-
-            Db::execQuery("INSERT INTO pages (name, desc) VALUES (".$this->name.", ".$this->desc.")");
-            $resp["pageId"] = mysql_insert_id();
+   
+    
+    
+    
+    public function save(Page $page){
+        if($page->getId()){
+            Db::execQuery("UPDATE pages SET name = '".$page->getName()."', 
+                                            desc = '".$page->getDesc()."'");
         }else{
-            $resp = array("error"=>true, "errorMsg"=>"something get wrong");
+            Db::execQuery("INSERT INTO pages (name, descr) VALUES 
+                        ('".mysql_escape_string($page->getName())."', '".mysql_escape_string($page->getDesc())."')");
+            $page->setId(mysql_insert_id());
         }
-
-
-        print_r($resp);
-
-
+        
+        return $page;
     }
 
-
-    function deletePage($id)
-    {
-        $resp = array("error" => false);
-        if ($id) {
-            Db::execQuery("DELETE * FROM Pages WHERE Pages.id = " . "$id");
-            $resp = array("error" => false);
+    function createPage($session, $name, $desc){
+        $resp = array();
+        $resp["error"] = false;
+        
+        $usr = UserController::getUserBySession($session);
+        
+        if($usr){
+            if (Utils::checkName($name)){
+                if (Utils::checkDesc($desc)){
+                    $page = new Page(); 
+                    $page->setName($name); 
+                    $page->setDesc($desc);
+                    $pageId = $this->save($page);
+                    $resp["pageId"] = $pageId;
+                }else{
+                    $resp["error"] = true;
+                    $resp["errorMsg"] = "description is too small";
+                }
+            }else{
+                $resp["error"] = true;
+                $resp["errorMsg"] = "name is too small";
+            }    
+        }else{
+            $resp["error"] = true;
+            $resp["errorMsg"] = "please sign in";
         }
-        else {
-            $resp = array("error" => true, "errorMsg" => "something got wrong")
-            }
+        
+        
 
 
-        print_r($resp);
-    }
-
+        echo json_encode($resp);
 
     }
+
+}
 
 

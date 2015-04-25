@@ -5,7 +5,15 @@ class Utils{
     
     public static function  checkEmail($str){
         return filter_var($str, FILTER_VALIDATE_EMAIL);
-    }    
+    } 
+    
+    public static function checkName($str){
+        return strlen($str) > 4;
+    }  
+    
+    public static function checkDesc($str){
+        return strlen($str) > 4;
+    }  
     
    public static function randString($length = 16) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
