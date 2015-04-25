@@ -30,8 +30,24 @@ class ApiController{
            case "create":
             $pc = new PageController();
             $pc->createPage($this->request->getPost("name"),
-                      $this->request->getPost("desc"));
+                      $this->request->getPost("desc"), 
+                      $this->request->getPost("music"),
+                      $this->request->getPost("images"),
+                      $this->request->getPost("tags"));
            break;
+           
+           case "mood":
+                PageController::getPage($this->request->getParam(0));
+           break;
+           
+           case "all":
+                PageController::getPages($this->request->getParam(1));
+           break;
+           
+           case "tag":
+                PageController::getPagesByTag($this->request->getParam(0), $this->request->getParam(3));
+           break;
+           
            case "upload_music":
                 $mc = new MusicController();
                 $mc->upload($this->request->getFiles());
