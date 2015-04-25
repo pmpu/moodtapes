@@ -5,7 +5,7 @@ class ImageController {
     
     
     
-    public function save(Image $image){
+    public static function save(Image $image){
          if($image->getId()){
             Db::execQuery("UPDATE images SET md5 = '".mysql_escape_string($image->getMd5())."'
                                 WHERE id = '".$image->getId()."'");
@@ -63,9 +63,9 @@ class ImageController {
     public function upload($files){
         $resp = array();
         $resp["error"] = false;
-        
+        print_r($files);
         $usr = UserController::currentUser();
-    
+        
         if($usr){
             foreach($files as $key=>$file){
                 if(!$file['error']){
@@ -82,7 +82,7 @@ class ImageController {
                             if(!($i = self::getImageByMd5($md5))){                                
                                 $i = new Image();                             
                                 $i->setMd5($md5);
-                                $this->save($i);
+                                $i = self::save($i);
                             }                            
                             
                             // tie with user
