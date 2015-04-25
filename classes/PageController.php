@@ -192,10 +192,8 @@ class PageController
     function createPage($name, $desc, $music, $images, $tags){
         $resp = array();
         $resp["error"] = false;
+  
         
-        
-        print_r($music);
-        print_r($images);
         $usr = UserController::currentUser();
         
         if($usr){
@@ -252,7 +250,7 @@ class PageController
         }
         
         
-        echo 1;
+
 
         echo json_encode($resp);
 

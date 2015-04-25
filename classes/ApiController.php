@@ -31,9 +31,7 @@ class ApiController{
                       $this->request->getPost("desc"), 
                       $this->request->getPost("music"),
                       $this->request->getPost("images"),
-                      $this->request->getPost("tags"),
-                      $this->request->getPost("color_bg"),
-                      $this->request->getPost("color_controls")
+                      $this->request->getPost("tags")
                       );
            break;
            
