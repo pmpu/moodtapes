@@ -28,7 +28,7 @@ class UserController{
 									 email='".$user->getEmail()."', 
 									 password_md5='".$user->getPasswordMd5()."',
 									 name='".$user->getName()."',
-									 session='".$user->getSession()."'
+									 session='".$user->getSession()."' WHERE id = '".$user->getId()."'
 				");
 		}else{ 
 			Db::execQuery("INSERT INTO users (email, password_md5, name, session) 
@@ -83,7 +83,7 @@ class UserController{
 		$resp = array();
 		$resp["error"] = false;
 
-
+    
 
 		if (Utils::checkEmail($email)){
 			if(strlen($password) >= 5){
@@ -94,9 +94,11 @@ class UserController{
 				if ($usr)
 				{
 					$usr->setSession(Utils::randString());
+                    
 					$this->save($usr);
 					$resp["session"] = $usr->getSession();
 					echo json_encode($resp);
+                    
 					return;
 				}
 			}
