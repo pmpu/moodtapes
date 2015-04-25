@@ -75,6 +75,7 @@ class PageController
             $tags = self::getPageTags($page);
             
             $resp_page = array();
+            $resp_page['id'] = $page->getId();
             $resp_page['name'] = $page->getName();
             $resp_page['desc'] = $page->getDesc();
             $resp_page['color_bg'] = $page->getColorBg();
@@ -192,15 +193,10 @@ class PageController
     
     
 
-    function createPage($name, $desc, $music, $images, $tags, $color_bg, $color_controls){
+    function createPage($name, $desc, $music, $images, $tags){
         $resp = array();
         $resp["error"] = false;
-        
-        if(!$color_bg)
-            $color_bg = "white";
-            
-        if(!$color_controls)
-            $color_controls = "gray";
+  
         
         $usr = UserController::currentUser();
         
@@ -210,8 +206,7 @@ class PageController
                     $page = new Page(); 
                     $page->setName($name); 
                     $page->setDesc($desc);
-                    $page->setColorBg($color_bg);
-                    $page->setColorControls($color_controls);
+
                                         
                     $page = $this->save($page);
                     
