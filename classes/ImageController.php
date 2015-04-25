@@ -64,6 +64,7 @@ class ImageController {
         $resp = array();
         $resp["error"] = false;
         print_r($files);
+        echo 1;
         $usr = UserController::currentUser();
         
         if($usr){
