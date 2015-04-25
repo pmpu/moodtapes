@@ -3,7 +3,7 @@ class db{
     public static function connectDatabase($server = DB_ADDRESS, $user = DB_USER, $password = DB_PASSWORD, $dbname = DB_NAME){      
         if(mysql_connect($server, $user, $password)){
             mysql_select_db($dbname);
-            mysql_set_charset("utf8");
+            
              mysql_query("SET NAMES 'latin1'");
               if($me = mysql_error()) new error("mysql", $me, __LINE__, __FILE__);
         }
