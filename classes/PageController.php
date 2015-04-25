@@ -192,7 +192,7 @@ class PageController
                     $page = new Page(); 
                     $page->setName($name); 
                     $page->setDesc($desc);
-                    $pageId = $this->save($page);
+                    $page = $this->save($page);
                     
                     if($music){
                         foreach($music as $key=>$m_id){
@@ -223,7 +223,7 @@ class PageController
                     }
                     
                     
-                    $resp["pageId"] = $pageId;
+                    $resp["pageId"] = $page->getId();
                 }else{
                     $resp["error"] = true;
                     $resp["errorMsg"] = "description is too small";
