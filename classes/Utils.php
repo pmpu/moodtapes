@@ -7,7 +7,7 @@ class Utils{
         return filter_var($str, FILTER_VALIDATE_EMAIL);
     }    
     
-   public staticiv function randString($length = 16) {
+   public static function randString($length = 16) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
