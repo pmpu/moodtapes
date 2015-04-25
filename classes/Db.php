@@ -4,7 +4,6 @@ class db{
         if(mysql_connect($server, $user, $password)){
             mysql_select_db($dbname);
             
-             mysql_query("SET NAMES 'latin1'");
               if($me = mysql_error()) new error("mysql", $me, __LINE__, __FILE__);
         }
     }
