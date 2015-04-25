@@ -17,9 +17,13 @@ class ApiController{
 	       case "hello":
             echo "hello ".$this->request->getParam(1); 
            break;
-           case "createUser":
+           case "signup":
             $uc = new UserController();
-            $uc->createUser($this->request->getPost("email"));
+            $uc->signup($this->request->getPost("email"), $this->request->getPost("password"), $this->request->getPost("name"));
+           break;
+           case "signin":
+            $uc = new UserController();
+            $uc->signin($this->request->getPost("email"), $this->request->getPost("password"));
            break;
            case "dbcheck":            
            

@@ -2,7 +2,7 @@
 
 class User{
 	private $id, $name, $email, $password_md5, $session;
-	function __construct($u){
+	function __construct($u = null){
 		if($u){
 			$this->id = $u["id"];
 			$this->name = $u["name"];
