@@ -4,8 +4,7 @@ class db{
         if(mysql_connect($server, $user, $password)){
             mysql_select_db($dbname);
             mysql_set_charset("utf8");
-             mysql_query('SET CHARACTER SET utf8');  
-             mysql_query('SET COLLATION_CONNECTION="utf8_general_ci"');
+             mysql_query("SET NAMES 'latin1'");
               if($me = mysql_error()) new error("mysql", $me, __LINE__, __FILE__);
         }
     }
