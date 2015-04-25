@@ -3,8 +3,9 @@ class db{
     public static function connectDatabase($server = DB_ADDRESS, $user = DB_USER, $password = DB_PASSWORD, $dbname = DB_NAME){      
         if(mysql_connect($server, $user, $password)){
             mysql_select_db($dbname);
-            // mysql_set_charset("utf8");
-             mysql_query("SET NAMES cp1251");
+            mysql_set_charset("utf8");
+             mysql_query('SET CHARACTER SET utf8');  
+             mysql_query('SET COLLATION_CONNECTION="utf8_general_ci"');
               if($me = mysql_error()) new error("mysql", $me, __LINE__, __FILE__);
         }
     }
