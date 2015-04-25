@@ -6,13 +6,13 @@
 Class Page{
    private $id;
    private $name;
-   private  $desc;
+   private  $description;
 
     function __construct($p = null) {
         if($p){
             $this->id = $p['id'];
             $this->name = $p['name'];
-            $this->desc = $p['desc'];    
+            $this->description = $p['description'];    
         }
     }
     
@@ -35,14 +35,14 @@ Class Page{
     function setDesc($val)
     {
 
-        $this->desc = $val;
+        $this->description = $val;
         return $this;
 
     }
 
     function getDesc()
     {
-       return $this->desc;
+       return $this->description;
 
     }
 

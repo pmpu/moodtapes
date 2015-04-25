@@ -1,3 +1,4 @@
 RewriteEngine on
+RewriteBase /
 RewriteRule ^([^\.]+)$ index.php?req=$1 [L]
 AddDefaultCharset utf-8
