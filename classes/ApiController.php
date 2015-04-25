@@ -45,7 +45,8 @@ class ApiController{
            break;
            
            case "tag":
-                PageController::getPagesByTag($this->request->getParam(0), $this->request->getParam(3));
+                PageController::getPagesByTag($this->request->getParam(0),
+                 $this->request->getParam(2));
            break;
            
            case "upload_music":
