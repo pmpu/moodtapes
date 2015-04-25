@@ -203,9 +203,9 @@ class PageController
                     $page->setName($name); 
                     $page->setDesc($desc);
 
-                     echo 1;                   
+                                        
                     $page = $this->save($page);
-                    
+                    echo 1;
                     if($music){
                         foreach($music as $key=>$m_id){
                             if($m = MusicController::getMusicById($m_id)){
