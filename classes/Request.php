@@ -46,7 +46,7 @@ class Request{
 	    }
 
 	    # отчистка get частей
-		 if($preArray = explode("/", trim($path))){
+		 if($preArray = explode("/", trim($path))){ //удалить пробелы с концов строки
 		 	foreach ($preArray as $key => $value) {
 		 		if(trim($value))
 		 		 $requestArray[$key] = trim($value);
