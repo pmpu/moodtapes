@@ -78,8 +78,6 @@ class PageController
             $resp_page['id'] = $page->getId();
             $resp_page['name'] = $page->getName();
             $resp_page['desc'] = $page->getDesc();
-            $resp_page['color_bg'] = $page->getColorBg();
-            $resp_page['color_controls'] = $page->getColorControls();
             $resp_page['music'] = array();
             $resp_page['images'] = array();
             $resp_page['tags'] = array();
@@ -127,8 +125,6 @@ class PageController
             
             $resp['name'] = $page->getName();
             $resp['desc'] = $page->getDesc();
-            $resp['color_bg'] = $page->getColorBg();
-            $resp['color_controls'] = $page->getColorControls();
             $resp['music'] = array();
             $resp['images'] = array();
             $resp['tags'] = array();
