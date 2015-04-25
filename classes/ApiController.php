@@ -22,7 +22,7 @@ class ApiController{
             $uc->signup($this->request->getPost("email"), $this->request->getPost("password"), $this->request->getPost("name"));
            break;
            case "signin":
-            print_r($_POST);
+            
             $uc = new UserController();
             $uc->signin($this->request->getPost("email"), $this->request->getPost("password"));
            break;
