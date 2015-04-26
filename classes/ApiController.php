@@ -13,7 +13,7 @@ class ApiController{
 	   $cusr = UserController::currentUser();
 	   switch($this->request->getAction()){
 	       case "":
-              Header("Location: /all");
+              Header("Location: /index.html");
            break;
 	       
            case "signup":

@@ -1,0 +1,244 @@
+body{
+    height: 100%;
+    
+}
+
+.topbar{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  
+    
+    text-align: right;
+    font-family: helvetica;
+    padding-right: 20px;
+    z-index: 10;
+    font-size: 19px;
+    color: white;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.65);
+}
+
+.topbar a{
+    color: white;
+    text-decoration: none
+}
+
+.mpage{       
+    padding-top: 50px;
+    padding-bottom: 100px;
+    background-color: rgba(25, 28, 46, 0.75);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    transition:  background-color 1s ease-out 0.5s;
+}
+
+.centered{
+    position: relative;
+    
+    left: 50%;
+    margin-left: -315px;
+    
+    width: 600px;
+    background-color: white;
+    box-shadow: 0 0px 10px rgba(245, 240, 240, 1);
+    padding: 30px;
+    
+    padding: 0;
+    border: 20px solid white;
+    border: 20px solid white;
+    box-shadow: none;
+}
+
+.logo{        
+    width: 555px;
+    height: 125px;
+    background: url("Assets/img/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;  
+
+}
+
+.mpreview{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+    display: inline-block;
+    margin-top: 20px;
+    box-shadow: 0 0 10px gray;
+    cursor: pointer;
+    
+}
+
+.logo_desc{
+    font-size: 25px;
+}
+
+.mpreview .bottom {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box
+}
+
+.mpreview .bottom .title {
+    font-size: 35px
+}
+
+.mpreview .bottom .desc {
+    font-size: 16px
+}
+
+
+.moodpage {
+    
+}
+
+.moodpage .centered{
+    
+    
+}
+
+.moodpage .centered .player_image{
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+}
+
+.moodpage .centered .head{
+   position: relative;
+}
+
+.moodpage .centered .head .bottom{
+    position: absolute;
+    bottom: 0px;
+    
+    z-index: 9;
+    color: white;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box
+}
+
+.moodpage .centered .head .controls {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    
+    
+    
+
+}
+
+.moodpage .centered .info{
+    color:white;
+   display: inline-block;
+    text-shadow: 0px 0px 14px  black;
+  
+}
+
+.moodpage .centered .info .title{
+    font-size: 45px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 450px;
+}
+
+.moodpage .centered .info .desc{
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    overflow: auto;
+     max-width: 450px;
+    
+}
+
+.moodpage .centered .head .controls .btn{
+    color: white;
+    background: none;
+    border: none;
+    font-size: 90px;    
+    opacity: .7;
+    cursor: pointer;
+}
+
+.moodpage .centered .head .controls .btn.pause{
+  
+}
+
+.moodpage .centered .head .controls .btn:active{
+    opacity: 1;
+}
+
+
+
+
+
+
+.moodpage .centered .playlist {
+    text-overflow: ellipsis;
+    padding: 10px;
+}
+
+.moodpage .centered .playlist .row {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 600px;
+    padding: 10px 15px 10px 30px;
+
+}
+
+.moodpage .centered .playlist .row .artist {
+    ;font-weight: bold;
+}
+
+.moodpage .centered .playlist .row:hover{
+    background-color: rgba(180, 180, 180, 0.11);
+    cursor: pointer;
+}
+
+.moodpage .centered .playlist .row:active{
+    background-color: rgba(180, 180, 180, 0.21);
+}
+
+.moodpage .centered .playlist .row .isplaying{
+    position: relative;
+    left: -20px
+}
+
+.sign{
+    margin-top: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="password"]{
+    padding: 5px;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+input[type="submit"]{
+    background: black;
+    color:white;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+
+
+
+

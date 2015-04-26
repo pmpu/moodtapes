@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/OpenServer/domains/moodtapesweb/app.js",
+        "C:/OpenServer/domains/moodtapesweb/Services/AsyncNav.js",
+        "C:/OpenServer/domains/moodtapesweb/lib/onsen/js/onsenui_all.min.js"
+    ]
+}
