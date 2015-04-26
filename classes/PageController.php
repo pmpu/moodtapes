@@ -1,7 +1,7 @@
 <?php
 
 
-define("MOODS_PER_PAGE", 5);
+define("MOODS_PER_PAGE", 15);
 
 class PageController
 {
