@@ -25,6 +25,11 @@ class ApiController{
             $uc = new UserController();
             $uc->signin($this->request->getPost("email"), $this->request->getPost("password"));
            break;
+           
+           case "check_session":
+                echo json_decode(array("error" => !UserController::currentUser()));
+           break;
+           
            case "create":
             $pc = new PageController();
             $pc->createPage($this->request->getPost("name"),
