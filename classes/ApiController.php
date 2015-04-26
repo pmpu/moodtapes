@@ -27,7 +27,7 @@ class ApiController{
            break;
            
            case "check_session":
-                echo json_decode(array("error" => !UserController::currentUser()));
+                echo json_encode(array("error" => !UserController::currentUser()));
            break;
            
            case "create":
